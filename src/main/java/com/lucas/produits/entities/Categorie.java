@@ -1,5 +1,6 @@
 package com.lucas.produits.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class Categorie {
     private Long idCat;
     private String nomCat;
     private String descriptionCat;
+    @JsonIgnore
     @OneToMany (mappedBy = "categorie")
     private List<Produit> produits;
 
