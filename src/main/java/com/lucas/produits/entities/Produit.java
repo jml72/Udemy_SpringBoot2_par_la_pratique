@@ -1,6 +1,10 @@
 package com.lucas.produits.entities;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -8,8 +12,18 @@ public class Produit {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idProduit;
+
+    @NotNull
+    @Size(min = 4, max= 15)
     private String nomProduit;
+
+    @Min(value = 10)
+    @Max(value = 10000)
     private Double prixProduit;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent
     private Date dateCreation;
 
     @ManyToOne
